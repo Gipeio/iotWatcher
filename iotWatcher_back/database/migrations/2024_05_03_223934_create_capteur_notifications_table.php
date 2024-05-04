@@ -8,10 +8,10 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('capteur_notifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('utilisateur_id');
-            $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('type');
             $table->text('condition');
             $table->boolean('active')->default(true);
@@ -21,6 +21,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('capteur_notifications');
     }
 };

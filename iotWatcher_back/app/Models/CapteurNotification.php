@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class CapteurNotification extends Model
 {
-    protected $table = 'notifications';
+    protected $table = 'capteur_notifications';
 
     protected $fillable = ['utilisateur_id', 'type', 'condition', 'active'];
 
@@ -14,5 +14,10 @@ class Notification extends Model
     public function utilisateur()
     {
         return $this->belongsTo(Utilisateur::class);
+    }
+
+    public function markAsRead()
+    {
+        $this->update(['read_at' => now()]);
     }
 }

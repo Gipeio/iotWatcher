@@ -17,8 +17,8 @@ class Utilisateur extends Model
     }
 
     // Relation avec les notifications
-    public function notifications()
+    public function capteurNotifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(CapteurNotification::class);
     }
 }
