@@ -9,8 +9,8 @@
     <h1>Liste des utilisateurs</h1>
 
     <ul>
-        @foreach ($utilisateurs as $utilisateur)
-            <li>{{ $utilisateur->nom }} - {{ $utilisateur->email }}</li>
+        @foreach ($users as $user)
+            <li>{{ $user->nom }} - {{ $user->email }}</li>
         @endforeach
     </ul>
 </body>

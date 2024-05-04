@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Utilisateur;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
     public function creerUtilisateur()
     {
-        $utilisateur = new Utilisateur;
-        $utilisateur->nom = 'John Doe';
-        $utilisateur->email = 'john@example.com';
-        $utilisateur->mot_de_passe = bcrypt('password');
-        $utilisateur->save();
+        $users = new User;
+        $users->nom = 'John Doe';
+        $users->email = 'john@example.com';
+        $users->mot_de_passe = bcrypt('password');
+        $users->save();
 
         return 'Utilisateur créé avec succès !';
     }
 
     public function listeUtilisateurs()
     {
-        $utilisateurs = Utilisateur::all();
-        return view('utilisateurs.index', compact('utilisateurs'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 }

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Capteur;
+use Illuminate\Support\Facades\Auth;
+
 
 class CapteurController extends Controller
 {
     public function index()
     {
+        Auth::loginUsingId(1);
         // Récupère la liste des capteurs de l'utilisateur
-        $capteurs = Capteur::where('utilisateur_id', auth()->id())->get();
+        $capteurs = Capteur::where('user_id', auth()->id())->get();
 
         // Retourne la vue avec les capteurs
         return view('capteurs.index', compact('capteurs'));
@@ -28,8 +31,7 @@ class CapteurController extends Controller
         $capteur = new Capteur();
         $capteur->nom = $request->nom;
         $capteur->type = $request->type;
-        //$capteur->utilisateur_id = auth()->id(); // Assigne l'ID de l'utilisateur actuellement connecté
-        $capteur->utilisateur_id = 1; // Assigne l'ID de l'utilisateur actuellement connecté
+        $capteur->user_id = auth()->id(); // Assigne l'ID de l'utilisateur actuellement connecté
         $capteur->save();
 
         // Redirection vers la page des capteurs avec un message de succès
@@ -40,7 +42,7 @@ class CapteurController extends Controller
     public function destroy(Capteur $capteur)
     {
         // Vérifie si l'utilisateur actuellement connecté est le propriétaire du capteur
-        if ($capteur->utilisateur_id === auth()->id()) {
+        if ($capteur->user_id === auth()->id()) {
             // Supprime le capteur
             $capteur->delete();
             
