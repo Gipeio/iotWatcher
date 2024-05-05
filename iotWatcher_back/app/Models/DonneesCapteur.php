@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DonneeCapteur extends Model
+class DonneesCapteur extends Model
 {
     protected $table = 'donnees_capteurs';
 
